@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Portafolio de Inversión</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#eef3f9;
+}
+
+header{
+    background:#0B3D91;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+header h1{
+    font-size:32px;
+}
+
+header p{
+    margin-top:8px;
+    font-size:18px;
+}
+
+.container{
+    width:90%;
+    max-width:900px;
+    margin:30px auto;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+h2{
+    color:#0B3D91;
+    margin-bottom:15px;
+}
+
+label{
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    margin-bottom:20px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:18px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    background:#0B3D91;
+    color:white;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#072d6b;
+}
+
+table{
+    width:100%;
+    margin-top:25px;
+    border-collapse:collapse;
+}
+
+th{
+    background:#0B3D91;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+.resultado{
+    margin-top:30px;
+    padding:20px;
+    background:#f4f7fb;
+    border-radius:10px;
+}
+
+.resultado h3{
+    color:#0B3D91;
+    margin-bottom:10px;
+}
+
+footer{
+    margin-top:40px;
+    background:#0B3D91;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Calculadora de Portafolio de Inversión</h1>
+
+<p>Inteligencia Artificial y Computación en la Nube</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Ingrese el capital a invertir</h2>
+
+<label>Monto (S/)</label>
+
+<input type="number" id="capital" placeholder="Ejemplo: 10000">
+
+<button onclick="calcular()">
+
+Calcular Portafolio
+
+</button>
+
+<div id="tabla" style="display:none;">
+
+<table>
+
+<tr>
+
+<th>Activo</th>
+
+<th>Porcentaje</th>
+
+<th>Inversión</th>
+
+</tr>
+
+<tr>
+
+<td>Microsoft</td>
+
+<td>35%</td>
+
+<td id="microsoft"></td>
+
+</tr>
+
+<tr>
+
+<td>Amazon</td>
+
+<td>25%</td>
+
+<td id="amazon"></td>
+
+</tr>
+
+<tr>
+
+<td>Nvidia</td>
+
+<td>25%</td>
+
+<td id="nvidia"></td>
+
+</tr>
+
+<tr>
+
+<td>ETF Invesco QQQ</td>
+
+<td>15%</td>
+
+<td id="qqq"></td>
+
+</tr>
+
+</table>
+
+<div class="resultado">
+
+<h3>Rentabilidad Estimada</h3>
+
+<p id="rentabilidad"></p>
+
+<p id="capitalFinal"></p>
+
+<br>
+
+<h3>Recomendación</h3>
+
+<p id="recomendacion"></p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+Proyecto Final - Economía General
+
+</footer>
+
+<script>
+
+function calcular(){
+
+let capital=parseFloat(document.getElementById("capital").value);
+
+if(isNaN(capital) || capital<=0){
+
+alert("Ingrese un monto válido");
+
+return;
+
+}
+
+let microsoft=capital*0.35;
+let amazon=capital*0.25;
+let nvidia=capital*0.25;
+let qqq=capital*0.15;
+
+document.getElementById("microsoft").innerHTML="S/ "+microsoft.toFixed(2);
+
+document.getElementById("amazon").innerHTML="S/ "+amazon.toFixed(2);
+
+document.getElementById("nvidia").innerHTML="S/ "+nvidia.toFixed(2);
+
+document.getElementById("qqq").innerHTML="S/ "+qqq.toFixed(2);
+
+let ganancia=capital*0.155;
+
+let total=capital+ganancia;
+
+document.getElementById("rentabilidad").innerHTML=
+"Rentabilidad anual estimada (15.5%): <strong>S/ "+ganancia.toFixed(2)+"</strong>";
+
+document.getElementById("capitalFinal").innerHTML=
+"Capital estimado después de un año: <strong>S/ "+total.toFixed(2)+"</strong>";
+
+let texto="";
+
+if(capital<5000){
+
+texto="Se recomienda aumentar el capital para mejorar la diversificación del portafolio.";
+
+}
+
+else if(capital<=20000){
+
+texto="Excelente distribución. El monto es adecuado para un portafolio diversificado con riesgo moderado.";
+
+}
+
+else{
+
+texto="Muy buen capital de inversión. El portafolio ofrece una estrategia sólida para inversiones de largo plazo.";
+
+}
+
+document.getElementById("recomendacion").innerHTML=texto;
+
+document.getElementById("tabla").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
